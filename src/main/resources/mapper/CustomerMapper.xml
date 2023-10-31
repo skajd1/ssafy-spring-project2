@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rest.mapper.CustomerMapper">	
+
+	<select id="selectAll" resultType="Customer">
+		select * from customer
+	</select>
+	<select id="selectOne" resultType="Customer" parameterType="String">
+		select * from customer where num = #{num}
+	</select>
+	<select id="search" resultType="Customer" parameterType="String">
+		select * from customer where address = #{address}
+	</select>
+	<insert id = "insert" parameterType = "map">
+		insert into customer (num,name,address) values (#{num},#{name},#{address})
+	</insert>
+	<delete id = "delete" parameterType = "map" >
+		delete from customer where num = #{num}
+	</delete>
+	<update id = "update" parameterType = "map">
+		update customer set name = #{name}, address = #{address} where num = #{num}
+	</update>
+	<!--   <select id = "search" resultType = "Customer" parameterType="map">
+		select * from customer where
+		<if test = "condition != null and condition == 'title'">
+			title
+		</if>
+		<if test = "condition != null and condition == 'name'">
+			name
+		</if>
+		like concat('%',#{keyword},'%')
+	</select>
+	-->	
+	
+
+</mapper>
